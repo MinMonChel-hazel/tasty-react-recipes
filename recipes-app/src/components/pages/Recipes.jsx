@@ -1,8 +1,8 @@
 import React, { use, useEffect } from "react";
-import recipes from "../data/db";
+import recipes from "../../data/db";
 import { useState } from "react";
-import RecipeCard from "./RecipeCard";
-import RecipeModal from "./RecipeModal";
+import RecipeCard from "../recipe/RecipeCard";
+import RecipeModal from "../recipe/RecipeModal";
 
 export default function Recipes({ onClick }) {
   const [recipesList, setRecipesList] = useState([]);

@@ -1,8 +1,8 @@
 import React from "react";
-import Home from "./Home";
-import Recipes from "./Recipes";
-import About from "./About";
-import Contact from "./Contact";
+import Home from "./pages/Home";
+import Recipes from "./pages/Recipes";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 export default function Main() {
   return (
