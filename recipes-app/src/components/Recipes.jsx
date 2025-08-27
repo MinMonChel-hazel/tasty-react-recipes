@@ -31,7 +31,17 @@ export default function Recipes({ onClick }) {
     setRecipesList(filteredRecipes);
   }, [searchQuery]);
 
-  useEffect(() => {}, [categoryFilter]);
+  useEffect(() => {
+    const filteredRecipes = categoryFilter
+      ? recipes.filter((recipe) => recipe.category === categoryFilter)
+      : recipes;
+    setRecipesList(filteredRecipes);
+  }, [categoryFilter]);
+
+  const clearSearch = () => {
+    setSearchQuery("");
+    setCategoryFilter("");
+  };
 
   return (
     <div
@@ -64,7 +74,10 @@ export default function Recipes({ onClick }) {
             )
           )}
         </select>
-        <button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-orange-500 hover:to-amber-500 transition-colors duration-100 text-white px-4 py-2 text-[14px] rounded-full">
+        <button
+          onClick={clearSearch}
+          className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-orange-500 hover:to-amber-500 transition-colors duration-100 text-white px-4 py-2 text-[14px] rounded-full"
+        >
           Clear Search
         </button>
       </div>
