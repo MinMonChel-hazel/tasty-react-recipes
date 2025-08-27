@@ -5,10 +5,12 @@ export default function Home() {
   return (
     <div
       id="home"
-      className="container mx-auto pt-58 flex-col justify-center items-center min-h-screen bg-amber-100 text-center"
+      className="container mx-auto pt-48 md:pt-44 lg:pt-58 flex-col justify-center items-center min-h-screen bg-amber-100 text-center"
     >
-      <h2 className="text-3xl font-bold mb-4">Welcome to Tasty Recipes</h2>
-      <p className="mb-6 text-gray-600 text-[15px]">
+      <h2 className="text-2xl md:text-3xl font-bold mb-4">
+        Welcome to Tasty Recipes
+      </h2>
+      <p className="mb-6 text-gray-600 text-[14px] md:text-[15px]">
         Discover delicious recipes from around the world.
       </p>
       <a href="#recipes">

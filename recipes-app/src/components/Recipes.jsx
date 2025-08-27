@@ -49,21 +49,21 @@ export default function Recipes({ onClick }) {
       className="container mx-auto px-10 py-8 bg-amber-50 text-center"
     >
       <h2 className="text-2xl font-bold mb-4">Featured Recipes</h2>
-      <p className="mb-6 text-gray-600 text-[14px]">
+      <p className="mb-6 text-gray-600 text-[13px] md:text-[14px]">
         Explore a variety of delicious recipes curated just for you.
       </p>
-      <div className="flex items-center justify-center gap-4 mx-20 mb-10">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:mx-10 lg:mx-20 mb-10">
         <input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           type="text"
           placeholder="Search Recipes..."
-          className="w-2/5 border border-gray-400 rounded-2xl px-4 py-1.5 text-[14px] focus:outline-none focus:ring-2 focus:ring-amber-500"
+          className="w-2/3 md:w-2/5 border border-gray-400 rounded-2xl px-4 py-1.5 text-[14px] focus:outline-none focus:ring-2 focus:ring-amber-500"
         />
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="w-2/5 border border-gray-400 rounded-2xl px-4 py-1.5 text-[14px] focus:outline-none focus:ring-2 focus:ring-amber-500"
+          className="w-2/3 md:w-2/5 border border-gray-400 rounded-2xl px-4 py-1.5 text-[14px] focus:outline-none focus:ring-2 focus:ring-amber-500"
         >
           <option selected>All Categories</option>
           {[...new Set(recipes.map((recipe) => recipe.category))].map(
@@ -76,7 +76,7 @@ export default function Recipes({ onClick }) {
         </select>
         <button
           onClick={clearSearch}
-          className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-orange-500 hover:to-amber-500 transition-colors duration-100 text-white px-4 py-2 text-[14px] rounded-full"
+          className="md:w-1/5 lg:w-auto bg-gradient-to-r from-amber-500 to-orange-500 hover:from-orange-500 hover:to-amber-500 transition-colors duration-100 text-white px-4 py-2 text-[14px] rounded-full"
         >
           Clear Search
         </button>
