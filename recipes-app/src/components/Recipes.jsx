@@ -8,6 +8,9 @@ export default function Recipes({ onClick }) {
   const [recipesList, setRecipesList] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+
   const closeModal = () => {
     setSelectedRecipe(null);
   };
@@ -16,10 +19,24 @@ export default function Recipes({ onClick }) {
     setRecipesList(recipes);
   }, []);
 
+  useEffect(() => {
+    const query = searchQuery.toLowerCase();
+    const filteredRecipes = recipes.filter(
+      (recipe) =>
+        recipe.title.toLowerCase().includes(query) ||
+        recipe.category.toLowerCase().includes(query) ||
+        recipe.ingredients.some((ing) => ing.toLowerCase().includes(query)) ||
+        recipe.instructions.includes(query)
+    );
+    setRecipesList(filteredRecipes);
+  }, [searchQuery]);
+
+  useEffect(() => {}, [categoryFilter]);
+
   return (
     <div
       id="recipes"
-      className="container mx-auto px-10 py-8 bg-amber-50 text-center mt-4"
+      className="container mx-auto px-10 py-8 bg-amber-50 text-center"
     >
       <h2 className="text-2xl font-bold mb-4">Featured Recipes</h2>
       <p className="mb-6 text-gray-600 text-[14px]">
@@ -27,15 +44,25 @@ export default function Recipes({ onClick }) {
       </p>
       <div className="flex items-center justify-center gap-4 mx-20 mb-10">
         <input
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
           type="text"
           placeholder="Search Recipes..."
-          className="w-2/5 border border-gray-400 rounded-2xl px-4 py-1.5 text-[14px]"
+          className="w-2/5 border border-gray-400 rounded-2xl px-4 py-1.5 text-[14px] focus:outline-none focus:ring-2 focus:ring-amber-500"
         />
-        <select className="w-2/5 border border-gray-400 rounded-2xl px-4 py-1.5 text-[14px]">
-          <option value="">All Categories</option>
-          <option value="breakfast">Breakfast</option>
-          <option value="lunch">Lunch</option>
-          <option value="dinner">Dinner</option>
+        <select
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          className="w-2/5 border border-gray-400 rounded-2xl px-4 py-1.5 text-[14px] focus:outline-none focus:ring-2 focus:ring-amber-500"
+        >
+          <option selected>All Categories</option>
+          {[...new Set(recipes.map((recipe) => recipe.category))].map(
+            (cat, index) => (
+              <option key={index} value={cat}>
+                {cat}
+              </option>
+            )
+          )}
         </select>
         <button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-orange-500 hover:to-amber-500 transition-colors duration-100 text-white px-4 py-2 text-[14px] rounded-full">
           Clear Search
